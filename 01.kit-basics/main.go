@@ -29,6 +29,7 @@ func (stringService) Length(str string) int {
 }
 
 func (stringService) Upper(str string) string {
+	fmt.Println("I'm in Upper")
 	return strings.ToUpper(str)
 }
 
@@ -54,6 +55,7 @@ type upperResponse struct {
 // endpoints.go
 func makeLengthEndpoint(svc StringService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
+		fmt.Println("I'm in makeLengthEndpoint")
 		req := request.(lengthRequest)
 		v := svc.Length(req.S)
 		return lengthResponse{v}, nil
@@ -63,6 +65,7 @@ func makeLengthEndpoint(svc StringService) endpoint.Endpoint {
 func makeUpperEndpoint(svc StringService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(upperRequest)
+		fmt.Println("I'm in makeUpperEndpoint")
 		converted := svc.Upper(req.S)
 		return upperResponse{converted}, nil
 	}
@@ -109,10 +112,12 @@ func decodeUpperRequest(_ context.Context, r *http.Request) (interface{}, error)
 	if err := json.NewDecoder(r.Body).Decode(&req_payload); err != nil {
 		return nil, err
 	}
+	fmt.Println("I'm in decodeUpperRequest")
 
 	return req_payload, nil
 }
 
 func encodeUpperRequest(ctx context.Context, w http.ResponseWriter, response interface{}) error {
+	fmt.Println("I'm in encodeUpperRequest")
 	return json.NewEncoder(w).Encode(response)
 }
