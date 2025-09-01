@@ -1,0 +1,8 @@
+mode: set
+ginapi/main.go:16.39,18.2 1 1
+ginapi/main.go:20.58,24.2 1 0
+ginapi/main.go:26.59,30.2 3 0
+ginapi/main.go:32.57,39.32 5 0
+ginapi/main.go:39.32,42.3 2 0
+ginapi/main.go:44.2,46.33 3 0
+ginapi/main.go:50.13,61.2 6 0
